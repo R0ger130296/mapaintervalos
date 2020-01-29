@@ -14,7 +14,7 @@ export default class Localitation extends Component {
     let mensaje = '';
     let setStoragge = async (ubic) => {
       try{
-        await AsyncStorage.setItem('Ubicacion', ubic);
+        await Storage.setItem('Ubicacion', ubic);
         getStoragge();
       } 
       catch(err){
@@ -23,7 +23,7 @@ export default class Localitation extends Component {
     }
     let clearStoragge = async() => {
       try{
-        await AsyncStorage.clear();
+        await Storage.clear();
       } 
       catch(err){
         console.log(err)
@@ -32,7 +32,7 @@ export default class Localitation extends Component {
   
     let getStoragge = async() => {
       try{
-         mensaje = await AsyncStorage.getItem('Ubicacion');
+         mensaje = await Storage.getItem('Ubicacion');
       } 
       catch(err){
         console.log(err)
@@ -84,8 +84,8 @@ export default class Localitation extends Component {
           <Text>Ingresa tu nombre</Text>
             <TextInput style={{ height: 50}} onChangeText={this.handleNombre} placeholder='Nombre'/>
         </View>
-          <Button title="Iniciar" style={{color: 'blue'}} onPress={()=>{setInterval(this.getLocalitation,500)}}/>
-          <Button title="Parar" style={{color: 'blue', marginTop: 50}} onPress={()=>{clearInterval(this.getLocalitation())}}/>
+          <Button title="Iniciar" onPress={()=>{setInterval(this.getLocalitation,500)}}/>
+          <Button title="Parar" onPress={()=>{clearInterval(this.getLocalitation())}}/>
       </View>
     )  
   }
